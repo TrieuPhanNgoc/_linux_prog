@@ -1,6 +1,7 @@
 CFLAG = `sdl2-config --cflags --libs`
-sdl:
-	g++ main.cpp -o sdl ${CFLAG}
+SOURCES = Game.h Game.cpp
+sdl: ${SOURCES}
+	g++ main.cpp ${SOURCES} -o sdl ${CFLAG}
 
 clean:
 	rm -rf sdl
