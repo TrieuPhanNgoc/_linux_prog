@@ -26,6 +26,9 @@ void Game::init_game(const char* title, int xpos, int ypos, int width, int heigh
             std::cout << "Renderer created" << std::endl;
         }
 
+        texture = new Texture(renderer, "./assets/bg2.png");
+        texture->Render(renderer, xpos, ypos, width, height);
+        
         is_running_game = true;
     }
     else {

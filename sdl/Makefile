@@ -1,5 +1,5 @@
 CFLAG = `sdl2-config --cflags --libs`
-SOURCES = Game.h Game.cpp
+SOURCES = Game.h Game.cpp Texture.cpp
 sdl: ${SOURCES}
 	g++ main.cpp ${SOURCES} -o sdl ${CFLAG}
 

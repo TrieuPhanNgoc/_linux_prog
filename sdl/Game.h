@@ -4,6 +4,7 @@
 #include <SDL2/SDL.h>
 #include <stdio.h>
 #include <iostream>
+#include "Texture.h"
 
 class Game {
     public:
@@ -29,6 +30,7 @@ class Game {
         bool is_running_game;
         SDL_Window* window;
         SDL_Renderer* renderer;
+        Texture* texture;
 };
 
 #endif
