@@ -6,7 +6,8 @@ Game::Game() {
 Game::~Game() {
 }
 
-void Game::init_game(const char* title, int xpos, int ypos, int width, int height, bool isFullScreen) {
+void Game::init_game(const char* title, int xpos, int ypos, int width, int height, bool isFullScreen)
+{
     int flags = 0;
     if (isFullScreen) {
         flags |= SDL_WINDOW_FULLSCREEN;
@@ -26,9 +27,17 @@ void Game::init_game(const char* title, int xpos, int ypos, int width, int heigh
             std::cout << "Renderer created" << std::endl;
         }
 
-        texture = new Texture(renderer, "./assets/bg2.png");
-        texture->Render(renderer, xpos, ypos, width, height);
-        
+        // This one does not work right now
+        SDL_Surface* tmpSuface = SDL_LoadBMP("/home/trieupn/Documents/exercices/_linux_prog/sdl/assets/bg2.png");
+        if (tmpSuface == nullptr) {
+            std::cout << "Reading image failed" << std::endl;
+        }
+        else {
+            std::cout << "Reading image successful" << std::endl;
+            background = SDL_CreateTextureFromSurface(renderer, tmpSuface);
+        }
+        SDL_FreeSurface(tmpSuface);
+
         is_running_game = true;
     }
     else {
@@ -52,12 +61,13 @@ void Game::handleEvents() {
     }
 }
 void Game::update_game() {
-    counter++; // increment counter
-    std::cout << "counter: " << counter << std::endl;
+    // counter++; // increment counter
+    // std::cout << "counter: " << counter << std::endl;
 }
 void Game::render_game() {
     SDL_RenderClear(renderer);
     // This is where we should add stuff to render
+    SDL_RenderCopy(renderer, background, nullptr, nullptr);
     SDL_RenderPresent(renderer);
 }
 void Game::clean_game() {
